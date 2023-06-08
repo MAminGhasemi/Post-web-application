@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Navigation Bar</title>
+
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/navbar.css') }}"
+    />
+    {% block head %} {% endblock %}
+  </head>
+
+  <body>
+    <div id="menu-nav">
+      <div id="navigation-bar">
+        <ul>
+          <li>
+            <a href="{{ url_for('home') }}"
+              ><i class="fa fa-home"></i><span>Home</span></a
+            >
+          </li>
+
+          {% if current_user.is_authenticated %}
+
+          <li>
+            <a href="{{ url_for('create') }}"
+              ><i class="fa-solid fa-pen-to-square"></i
+              ><span>Create Post</span></a
+            >
+          </li>
+
+          <li>
+            <a href="{{ url_for('logout') }}"
+              ><i class="fa fa-solid fa-arrow-right-from-bracket"></i
+              ><span>Log-out</span></a
+            >
+          </li>
+          {% else %}
+          <li>
+            <a href="{{ url_for('login') }}"
+              ><i class="fa fa-solid fa-arrow-right-to-bracket"></i
+              ><span>Login</span></a
+            >
+          </li>
+          <li>
+            <a href="{{ url_for('register') }}"
+              ><i class="fa fa-solid fa-user-plus"></i><span>Sign-up</span></a
+            >
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+    {% block body %} {% endblock %}
+
+    <script
+      src="https://kit.fontawesome.com/672d84dbce.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
